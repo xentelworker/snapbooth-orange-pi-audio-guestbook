@@ -37,7 +37,7 @@ last_played_path = None
 def set_volume(volume_pct, mixer_control):
     """Set system volume using amixer."""
     vol = max(0, min(int(volume_pct * 100), 100))
-    subprocess.run(["amixer", "set", mixer_control, f"{vol}%"], check=False, 
+    subprocess.run(["amixer", "-D", "hw:CARD=Device", "set", mixer_control, f"{vol}%"], check=False, 
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def is_on_hook(pin, hook_type, invert_hook):
